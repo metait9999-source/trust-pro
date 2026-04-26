@@ -11,7 +11,7 @@ import useCryptoTradeConverter from "../../hooks/userCryptoTradeConverter";
 import { useFetchUserBalance } from "../../hooks/useFetchUserBalance";
 import { useUpdateUserBalance } from "../../hooks/useUpdateUserBalance";
 import { API_BASE_URL } from "../../api/getApiURL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import useTimerProfit from "../../hooks/useTimerProfit";
 import TradeviewChart from "../Chart/TradeviewChart";
 
@@ -70,7 +70,7 @@ const Business = () => {
 
   useEffect(() => {
     const filterselectedWallet = wallets.find(
-      (wallet) => wallet.coin_id === "518"
+      (wallet) => wallet.coin_id === "518",
     );
     if (filterselectedWallet) {
       setSelectedWallet(filterselectedWallet);
@@ -181,7 +181,7 @@ const Business = () => {
             delivery_time: selectedTime,
             profit_level: selectedProfit,
             is_profit: user?.is_profit,
-          }
+          },
         );
 
         // Update user balance
@@ -238,8 +238,8 @@ const Business = () => {
                 {type === "crypto"
                   ? market.symbol
                   : type === "metal"
-                  ? getMetalCoinName(market?.symbol.split("=")[0].trim())
-                  : market?.shortName}
+                    ? getMetalCoinName(market?.symbol.split("=")[0].trim())
+                    : market?.shortName}
               </div>
               <div className="fc-5B616E ff_NunitoSemiBold">
                 {wallets.length > 0
@@ -301,17 +301,17 @@ const Business = () => {
                 (coin === "CHFUSD" || coin === "JPYUSD" || coin === "CADUSD")
                   ? "FX_IDC"
                   : type === "forex"
-                  ? "FX"
-                  : type === "crypto"
-                  ? "BINANCE"
-                  : ""
+                    ? "FX"
+                    : type === "crypto"
+                      ? "BINANCE"
+                      : ""
               }
               coin={
                 type === "forex"
                   ? coin
                   : type === "metal"
-                  ? coin
-                  : `${market?.symbol}USD`
+                    ? coin
+                    : `${market?.symbol}USD`
               }
             />
           </div>
@@ -380,8 +380,8 @@ const Business = () => {
                     {type === "crypto"
                       ? market.symbol
                       : type === "metal"
-                      ? getMetalCoinName(market?.symbol.split("=")[0].trim())
-                      : market?.symbol.split("=")[0].trim()}
+                        ? getMetalCoinName(market?.symbol.split("=")[0].trim())
+                        : market?.symbol.split("=")[0].trim()}
                     <span> Delivery</span>
                   </span>
                   <img
@@ -429,10 +429,10 @@ const Business = () => {
                         {type === "crypto"
                           ? market.symbol
                           : type === "metal"
-                          ? getMetalCoinName(
-                              market?.symbol.split("=")[0].trim()
-                            )
-                          : market?.symbol.split("=")[0].trim()}
+                            ? getMetalCoinName(
+                                market?.symbol.split("=")[0].trim(),
+                              )
+                            : market?.symbol.split("=")[0].trim()}
                       </div>
                       <div>
                         <span>Market Order: </span>
@@ -561,7 +561,7 @@ const Business = () => {
                               value={get_post_meta(
                                 selectedWallet?.ID,
                                 "coin_id",
-                                true
+                                true,
                               )}
                             />
                             <span className="fc-131F30 ff_NunitoBold">
@@ -623,11 +623,11 @@ const Business = () => {
                             lineHeight: 0,
                           }
                         : selectedType === "Sell"
-                        ? { backgroundColor: "#cf202f", lineHeight: 0 }
-                        : {
-                            backgroundColor: "rgb(19, 178, 111)",
-                            lineHeight: 0,
-                          }
+                          ? { backgroundColor: "#cf202f", lineHeight: 0 }
+                          : {
+                              backgroundColor: "rgb(19, 178, 111)",
+                              lineHeight: 0,
+                            }
                     }
                   >
                     Trade

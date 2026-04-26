@@ -8,7 +8,7 @@ import useFetchLatestDeposit from "../../hooks/useFetchLatestDeposit";
 import { useFetchUserBalance } from "../../hooks/useFetchUserBalance";
 import { FaRegCopy } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useUpdateUserBalance } from "../../hooks/useUpdateUserBalance";
 import useCryptoTradeConverter from "../../hooks/userCryptoTradeConverter";
 import useSettings from "../../hooks/useSettings";
@@ -38,7 +38,7 @@ const Funds = () => {
   } = useFetchLatestDeposit(user?.id, wallet?.coin_id);
   const { balance, refetch: refetchUserBalance } = useFetchUserBalance(
     user?.id,
-    wallet?.coin_id
+    wallet?.coin_id,
   );
   const { convertUSDTToCoin } = useCryptoTradeConverter();
 
@@ -48,7 +48,7 @@ const Funds = () => {
       try {
         convertB = await convertUSDTToCoin(
           balance?.coin_amount,
-          wallet.coin_id
+          wallet.coin_id,
         );
       } catch (error) {
         console.error("Error converting USDT to coin:", error);
@@ -211,7 +211,7 @@ const Funds = () => {
     }
     let timerInterval;
     const createdAt = new Date(
-      getFormattedDeliveryTime(latestDeposit?.created_at)
+      getFormattedDeliveryTime(latestDeposit?.created_at),
     );
     const countdownEnd = new Date(createdAt.getTime() + 60 * 60 * 1000); // Add 1 hour to the created_at time
 
@@ -235,14 +235,14 @@ const Funds = () => {
 
       const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(
         2,
-        "0"
+        "0",
       );
       const minutes = String(
-        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
       ).padStart(2, "0");
       const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(
         2,
-        "0"
+        "0",
       );
 
       setTimeLeft(`${hours}:${minutes}:${seconds}`);

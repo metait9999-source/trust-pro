@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
 const DepositModal = ({ isOpen, onClose, details, onUpdateSuccess, title }) => {
@@ -44,7 +44,7 @@ const DepositModal = ({ isOpen, onClose, details, onUpdateSuccess, title }) => {
       try {
         const response = await axios.put(
           `${API_BASE_URL}/deposits/${details.id}`,
-          updatedDeposit
+          updatedDeposit,
         );
         toast.success("Deposit updated successfully");
         console.log("Data successfully submitted:", response);
@@ -58,7 +58,7 @@ const DepositModal = ({ isOpen, onClose, details, onUpdateSuccess, title }) => {
       try {
         const response = await axios.put(
           `${API_BASE_URL}/withdraws/${details.id}`,
-          updatedData
+          updatedData,
         );
         toast.success("Withdraw updated successfully");
         console.log("Data successfully submitted:", response);

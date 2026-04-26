@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 // import axios from "axios";
-// import { toast } from "react-toastify";
+// import toast from "react-hot-toast";
 import { useUser } from "../../../context/UserContext";
 import Pagination from "../../Pagination/Pagination";
 import BalanceModal from "../AdminUsers/BalanceModal";
@@ -144,7 +144,7 @@ const AllAdmins = () => {
 
   useEffect(() => {
     const filtered = users.filter((trade) =>
-      trade.uuid.toLowerCase().includes(searchTerm.toLowerCase())
+      trade.uuid.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredUsers(filtered);
     setPage(1); // Reset to first page on search

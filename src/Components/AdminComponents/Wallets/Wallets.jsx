@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { useUser } from "../../../context/UserContext";
 
@@ -36,11 +36,11 @@ const Wallets = () => {
   const handleDelete = async (walletID) => {
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/wallets/${walletID}`
+        `${API_BASE_URL}/wallets/${walletID}`,
       );
       console.log("Delete response: ", response);
       setWallets((prevWallets) =>
-        prevWallets.filter((wallet) => wallet.id !== walletID)
+        prevWallets.filter((wallet) => wallet.id !== walletID),
       );
       toast.success("Delete Successful");
     } catch (error) {

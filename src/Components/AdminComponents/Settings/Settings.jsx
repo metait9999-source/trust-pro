@@ -3,7 +3,7 @@ import { useUser } from "../../../context/UserContext";
 import axios from "axios";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import UpdateTimer from "./UpdateTImer";
 
 const Settings = () => {
@@ -141,7 +141,7 @@ const Settings = () => {
     try {
       const response = await axios.post(
         `${API_BASE_URL}/timerprofits`,
-        timerData
+        timerData,
       );
       toast.success("Timer profit added successfully!");
       setRefreshData(!refreshData);
@@ -154,11 +154,11 @@ const Settings = () => {
   const handleDelete = async (timerId) => {
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/timerprofits/${timerId}`
+        `${API_BASE_URL}/timerprofits/${timerId}`,
       );
       console.log("Delete response: ", response);
       setTimerProfits((prevDeposits) =>
-        prevDeposits.filter((deposit) => deposit.id !== timerId)
+        prevDeposits.filter((deposit) => deposit.id !== timerId),
       );
       toast.success("Delete Successful");
     } catch (error) {

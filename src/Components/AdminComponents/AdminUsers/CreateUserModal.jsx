@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../../api/getApiURL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const CreateUserModal = ({ isOpen, onClose, onUpdateSuccess }) => {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const CreateUserModal = ({ isOpen, onClose, onUpdateSuccess }) => {
     try {
       const response = await axios.post(
         `${API_BASE_URL}/users/signup`,
-        formData
+        formData,
       );
       setResponseMessage("User registered successfully!");
       toast.success("User registered successfully!");

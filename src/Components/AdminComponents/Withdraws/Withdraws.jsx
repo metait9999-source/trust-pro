@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import DepositModal from "../Deposits/DepositModal";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { useUser } from "../../../context/UserContext";
 import Pagination from "../../Pagination/Pagination";
@@ -45,11 +45,11 @@ const Withdraws = () => {
   const handleDelete = async (withdrawID) => {
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/withdraws/${withdrawID}`
+        `${API_BASE_URL}/withdraws/${withdrawID}`,
       );
       console.log("Delete response: ", response);
       setWithdraws((prevWithdraws) =>
-        prevWithdraws.filter((deposit) => deposit.id !== withdrawID)
+        prevWithdraws.filter((deposit) => deposit.id !== withdrawID),
       );
       toast.success("Delete Successful");
     } catch (error) {
@@ -98,7 +98,7 @@ const Withdraws = () => {
     const filtered = withdraws
       ?.reverse()
       .filter((trade) =>
-        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase())
+        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     setFilteredWithdraws(filtered);
     setPage(1); // Reset to first page on search
@@ -112,7 +112,7 @@ const Withdraws = () => {
   const indexOfFirstTrade = indexOfLastTrade - tradesPerPage;
   const currentWithdraws = filteredWithdraws.slice(
     indexOfFirstTrade,
-    indexOfLastTrade
+    indexOfLastTrade,
   );
 
   // Handle search input change

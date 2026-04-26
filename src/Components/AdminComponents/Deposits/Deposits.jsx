@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import DepositModal from "./DepositModal";
 import ImageViewer from "./ImageViewer";
@@ -48,11 +48,11 @@ const Deposits = () => {
   const handleDelete = async (depositID) => {
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/deposits/${depositID}`
+        `${API_BASE_URL}/deposits/${depositID}`,
       );
       console.log("Delete response: ", response);
       setDeposits((prevDeposits) =>
-        prevDeposits.filter((deposit) => deposit.id !== depositID)
+        prevDeposits.filter((deposit) => deposit.id !== depositID),
       );
       toast.success("Delete Successful");
     } catch (error) {
@@ -110,7 +110,7 @@ const Deposits = () => {
     const filtered = deposits
       ?.reverse()
       .filter((trade) =>
-        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase())
+        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     setFilteredDeposits(filtered);
     setPage(1); // Reset to first page on search
@@ -124,7 +124,7 @@ const Deposits = () => {
   const indexOfFirstTrade = indexOfLastTrade - tradesPerPage;
   const currentDeposits = filteredDeposits.slice(
     indexOfFirstTrade,
-    indexOfLastTrade
+    indexOfLastTrade,
   );
 
   // Handle search input change

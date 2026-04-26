@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { API_BASE_URL } from "../../../api/getApiURL";
 
 const EditWallet = () => {
@@ -85,7 +85,7 @@ const EditWallet = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       toast.success("Wallet updated successfully");
       console.log("Data successfully submitted:", response);

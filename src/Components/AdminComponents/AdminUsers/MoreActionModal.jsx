@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../../../api/getApiURL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useUser } from "../../../context/UserContext";
 
 const MoreActionModal = ({
@@ -57,7 +57,7 @@ const MoreActionModal = ({
     try {
       const response = await axios.put(
         `${API_BASE_URL}/users/${details.id}`,
-        formData
+        formData,
       );
       toast.success("User updated successfully!");
       onClose();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import axios from "axios";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import DetailsCard from "./DetailsCard";
@@ -55,7 +55,7 @@ const Trading = () => {
     const filtered = trades
       ?.reverse()
       .filter((trade) =>
-        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase())
+        trade.user_uuid.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     setFilteredTrades(filtered);
     setPage(1); // Reset to first page on search
@@ -69,7 +69,7 @@ const Trading = () => {
   const indexOfFirstTrade = indexOfLastTrade - tradesPerPage;
   const currentTrades = filteredTrades.slice(
     indexOfFirstTrade,
-    indexOfLastTrade
+    indexOfLastTrade,
   );
 
   // Handle search input change
@@ -80,11 +80,11 @@ const Trading = () => {
   const handleDelete = async (tradeId) => {
     try {
       const response = await axios.delete(
-        `${API_BASE_URL}/tradeorder/${tradeId}`
+        `${API_BASE_URL}/tradeorder/${tradeId}`,
       );
       console.log("Delete response: ", response);
       setTrades((prevTrades) =>
-        prevTrades.filter((trade) => trade.id !== tradeId)
+        prevTrades.filter((trade) => trade.id !== tradeId),
       );
       toast.success("Delete Successful");
     } catch (error) {
@@ -128,7 +128,7 @@ const Trading = () => {
     try {
       const response = await axios.put(
         `${API_BASE_URL}/tradeorder/${trade.id}`,
-        updatedUser
+        updatedUser,
       );
       toast.success("Trade updated successfully");
       console.log("Data successfully submitted:", response);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE_URL } from "../../../api/getApiURL";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import BalanceModal from "./BalanceModal";
 import { useUser } from "../../../context/UserContext";
 import Pagination from "../../Pagination/Pagination";
@@ -52,7 +52,7 @@ const AdminUsers = () => {
     try {
       const response = await axios.put(
         `${API_BASE_URL}/users/${user.id}`,
-        updatedUser
+        updatedUser,
       );
       toast.success("User updated successfully");
       console.log("Data successfully submitted:", response);
@@ -71,7 +71,7 @@ const AdminUsers = () => {
     try {
       const response = await axios.put(
         `${API_BASE_URL}/users/${user.id}`,
-        updatedUser
+        updatedUser,
       );
       toast.success("User updated successfully");
       console.log("Data successfully submitted:", response);
@@ -136,13 +136,13 @@ const AdminUsers = () => {
 
     if (searchTerm) {
       filtered = filtered.filter((user) =>
-        user.uuid.toLowerCase().includes(searchTerm.toLowerCase())
+        user.uuid.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
     if (searchEmployee) {
       filtered = filtered.filter((user) =>
-        user?.employee?.toLowerCase().includes(searchEmployee.toLowerCase())
+        user?.employee?.toLowerCase().includes(searchEmployee.toLowerCase()),
       );
     }
 

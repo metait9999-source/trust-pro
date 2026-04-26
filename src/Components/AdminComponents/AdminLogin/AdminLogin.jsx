@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useUser } from "../../../context/UserContext";
 import { API_BASE_URL } from "../../../api/getApiURL";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
   const { setUser, setAdminUser, setLoading } = useUser();
@@ -20,7 +20,7 @@ const AdminLogin = () => {
     try {
       const response = await axios.post(
         `${API_BASE_URL}/users/login`,
-        loginData
+        loginData,
       );
 
       const userData = response.data;
@@ -39,7 +39,7 @@ const AdminLogin = () => {
     } catch (error) {
       console.error(
         "Login failed:",
-        error.response ? error.response.data : error.message
+        error.response ? error.response.data : error.message,
       );
       toast.error("Login failed. Please check your credentials.");
     } finally {
